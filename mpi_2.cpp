@@ -5,6 +5,8 @@
 int main(int argc, char *argv[])
 {
     int world_rank;
+    MPI_Init(&argc, &argv);
+
     MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
 
     int color = world_rank % 4;
@@ -20,5 +22,7 @@ int main(int argc, char *argv[])
 	    world_rank, row_rank, row_size);
 
     MPI_Comm_free(&mod_comm);
+
+    MPI_Finalize();
 
 }
