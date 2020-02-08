@@ -14,5 +14,3 @@ gemm: $(SRCS)
 
 ../lab1/gemm-baseline.a:
 	$(MAKE) -C ../lab1 gemm-baseline.a
-
-include ../makefile
