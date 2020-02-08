@@ -7,7 +7,7 @@ REQUIRED_FILES = mpi.cpp lab2-report.pdf
 
 np ?= 16
 
-test: gemm
+test: gemm1
 	mpiexec -np $(np) ./$^
 
 gemm1: $(SRCS1)

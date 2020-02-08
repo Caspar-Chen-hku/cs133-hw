@@ -40,7 +40,12 @@ int main(int argc, char *argv[])
     int* h = new int[m+1];
     histogram(a,h);
 
-    MPI_Reduce(h, h, m+1, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
+    int *total;
+    if (world_rank == 0){
+        total = new int[m+1];
+    }
+
+    MPI_Reduce(h, total, m+1, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
 
     if (world_rank == 0){
         for (int i=l; i<=m; i++){
