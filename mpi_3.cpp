@@ -16,13 +16,16 @@ int N = 10;
 int main(int argc, char *argv[])
 {
     int world_rank, size;
+
+    int *a;
+    int *h;
+
     MPI_Init(&argc, &argv);
 
     MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
     MPI_Comm_size(MPI_COMM_WORLD, &size);
 
-
-    int* a = new int[N];
+    a = new int[N];
 
     srand (time(NULL));
     
@@ -32,7 +35,7 @@ int main(int argc, char *argv[])
     }
     
     
-    int* h = new int[m+1];
+    h = new int[m+1];
     histogram(a,h);
 
     int *total;
@@ -44,10 +47,9 @@ int main(int argc, char *argv[])
 
     if (world_rank == 0){
         for (int i=l; i<=m; i++){
-            printf("h[%d] = %d\n", i, h[i]);
+            printf("h[%d] = %d\n", i, total[i]);
         }
     }
-
 
     MPI_Finalize();
 
