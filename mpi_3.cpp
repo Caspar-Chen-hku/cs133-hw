@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <time.h>
 #include <mpi.h>
  
 int l = 1;
@@ -15,8 +14,6 @@ int main(int argc, char *argv[])
     int *a;
     int *h;
 
-    srand (time(NULL));
-
     MPI_Init(&argc, &argv);
 
     MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
@@ -25,10 +22,8 @@ int main(int argc, char *argv[])
     a = new int[N];
     
     for (int i=0; i<N; i++){
-        a[i] = rand()%m + l;
-        
+        a[i] = (l+i+world_rank)%(m-l) + l;
     }
-    
     
     h = new int[m+1];
     for (int i=0; i<=m; i++){
