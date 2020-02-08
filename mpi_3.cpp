@@ -35,7 +35,9 @@ int main(int argc, char *argv[])
     
     for (int i=0; i<N; i++){
         a[i] = rand()%m + l;
+        printf("rank %d: a[%d]=%d\n", world_rank, i, a[i]);
     }
+    
     
     int* h = new int[m+1];
     histogram(a,h);
