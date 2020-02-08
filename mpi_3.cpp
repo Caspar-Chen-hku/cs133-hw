@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <string.h>
-#include <mpi.h>
 #include <stdlib.h>
 #include <time.h>
  
@@ -9,13 +8,7 @@ int m = 5;
 int N = 10;
 
  void histogram(int *a, int *h){
-     #pragma omp parallel for
-     for (int i=0; i<=m; i++){
-        h[i] = 0;
-     }
-     #pragma omp parallel for
      for (int i=0; i<N; i++){
-        #pragma omp atomic
         h[a[i]]++;
      }
  }
