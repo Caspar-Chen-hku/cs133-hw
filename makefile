@@ -1,11 +1,10 @@
 CXX = mpicxx
 
-SRCS = ../lab1/gemm.h ../lab1/gemm.cpp ../lab1/gemm-baseline.a \
-       mpi.cpp main.cpp
+SRCS = mpi_2.cpp
 
 REQUIRED_FILES = mpi.cpp lab2-report.pdf
 
-np ?= 4
+np ?= 16
 
 test: gemm
 	mpiexec -np $(np) ./$^
