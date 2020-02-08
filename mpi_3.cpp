@@ -9,6 +9,9 @@ int m = 5;
 int N = 10;
 
  void histogram(int *a, int *h){
+     for (int i=0; i<=m; i++){
+         h[i] = 0;
+     }
      for (int i=0; i<N; i++){
         h[a[i]]++;
      }
