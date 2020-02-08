@@ -10,7 +10,6 @@ int N = 10;
 int main(int argc, char *argv[])
 {
     int world_rank, size;
-
     int *a;
     int *h;
 
@@ -33,23 +32,12 @@ int main(int argc, char *argv[])
         h[a[i]]++;
      }
 
-     for (int i=l; i<=m; i++){
-         printf("rank %d: h[%d]=%d\n", world_rank, i, h[i]);
-     }
-
     int *total;
     if (world_rank == 0){
         total = new int[m+1];
     }
-
+    //MPI function I use: MPI_Reduce:
     MPI_Reduce(h, total, m+1, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
-
-    if (world_rank == 0){
-        for (int i=l; i<=m; i++){
-            printf("h[%d] = %d\n", i, total[i]);
-        }
-    }
-
     MPI_Finalize();
 
 }
