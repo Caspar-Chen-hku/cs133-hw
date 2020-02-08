@@ -30,7 +30,10 @@ int main(int argc, char *argv[])
     }
     
     
-    h = new int[m+1](0);
+    h = new int[m+1];
+    for (int i=0; i<=m; i++){
+        h[i] = 0;
+    }
      for (int i=0; i<N; i++){
         h[a[i]]++;
      }
