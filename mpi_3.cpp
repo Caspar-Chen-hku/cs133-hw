@@ -8,15 +8,6 @@ int l = 1;
 int m = 5;
 int N = 10;
 
- void histogram(int *a, int *h){
-     for (int i=0; i<=m; i++){
-         h[i] = 0;
-     }
-     for (int i=0; i<N; i++){
-        h[a[i]]++;
-     }
- }
-
 int main(int argc, char *argv[])
 {
     int world_rank, size;
@@ -35,12 +26,18 @@ int main(int argc, char *argv[])
     
     for (int i=0; i<N; i++){
         a[i] = rand()%m + l;
-        printf("rank %d: a[%d]=%d\n", world_rank, i, a[i]);
+        
     }
     
     
-    h = new int[m+1];
-    histogram(a,h);
+    h = new int[m+1](0);
+     for (int i=0; i<N; i++){
+        h[a[i]]++;
+     }
+
+     for (int i=l; i<=m; i++){
+         printf("rank %d: h[%d]=%d\n", world_rank, i, h[i]);
+     }
 
     int *total;
     if (world_rank == 0){
