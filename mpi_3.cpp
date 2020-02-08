@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
+#include <mpi.h>
  
 int l = 1;
 int m = 5;
